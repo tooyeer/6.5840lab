@@ -53,6 +53,7 @@ func (rf *Raft) sendRequestVote(server int, args *RequestVoteArgs, reply *Reques
 	if rf.killed() {
 		return false
 	}
+
 	ok := rf.peers[server].Call("Raft.RequestVote", args, reply)
 	return ok
 }
