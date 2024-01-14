@@ -433,10 +433,10 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		rf.status = Follower
 		rf.persist()
 		reply.Term, reply.VoteGranted = rf.currentTerm, true
-		rf.electionTimer.Reset(RandomizedElectionTimeout())
-	}
 
+	}
 }
+
 func (rf *Raft) BroadcastHeartbeat() {
 	for peer := range rf.peers {
 		if peer == rf.me {
